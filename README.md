@@ -49,6 +49,10 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 🚫 List all of the languages, frameworks, services, etc used here.
 
+## Models
+
+🚫 Describe your models here
+
 ## Features
 
 -   Feature 1
@@ -66,6 +70,10 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 -   Source 5
 
 ## Contributing
+
+## How to connect to the API
+
+🚫 List directions on how to connect to the API here
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
