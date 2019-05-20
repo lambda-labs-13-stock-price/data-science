@@ -53,13 +53,13 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 🚫 Describe your models here
 
-## Features
+## Explanatory Variables
 
--   Feature 1
--   Feature 2
--   Feature 3
--   Feature 4
--   Feature 5
+-   Explanatory Variable 1
+-   Explanatory Variable 2
+-   Explanatory Variable 3
+-   Explanatory Variable 4
+-   Explanatory Variable 5
 
 ## Data Sources
 
@@ -71,7 +71,13 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 ## Contributing
 
-## How to connect to the API
+## How to connect to the  web API
+
+🚫 List directions on how to connect to the API here
+
+## How to connect to the  data API
+
+🚫 List directions on how to connect to the API here
 
 🚫 List directions on how to connect to the API here
 
