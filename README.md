@@ -49,7 +49,7 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 🚫 List all of the languages, frameworks, services, etc used here.
 
-## Models
+## Predictions
 
 🚫 Describe your models here
 
