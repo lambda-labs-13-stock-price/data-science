@@ -69,8 +69,6 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 -   Source 4
 -   Source 5
 
-## Contributing
-
 ## How to connect to the  web API
 
 🚫 List directions on how to connect to the API here
