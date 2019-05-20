@@ -79,7 +79,7 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 🚫 List directions on how to connect to the API here
 
-🚫 List directions on how to connect to the API here
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
