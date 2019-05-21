@@ -27,34 +27,32 @@
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
 
-🚫 3️⃣ Add description of project here
-
+## Project Overview
 You can find the project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+
+1️⃣ [Trello Board](🚫add link to trello board here)
+
+1️⃣ [Product Canvas](🚫add link to product canvas here)
 
 🚫 Replace lorem ipsum with a description of your project
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 🚫  delete if front end is not applicable to your project
 
 1️⃣ [Deployed Front End](🚫add link to deployed app here)
 
-🚫 One to two paragraph statement about your product and what it does.
-
-Quis hendrerit dolor magna eget. Pretium quam vulputate dignissim suspendisse. Ut aliquam purus sit amet luctus venenatis lectus magna fringilla. Orci dapibus ultrices in iaculis nunc sed augue. Euismod in pellentesque massa placerat duis ultricies. Bibendum at varius vel pharetra vel turpis nunc eget lorem. Lectus quam id leo in vitae. Purus sit amet luctus venenatis lectus magna fringilla urna porttitor.
-
-Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pellentesque diam volutpat. Id diam maecenas ultricies mi eget mauris. Est pellentesque elit ullamcorper dignissim. Orci dapibus ultrices in iaculis nunc.
-
-## Tech Stack
+### Tech Stack
 
 🚫 List all of the languages, frameworks, services, etc used here.
 
-## 2️⃣ Predictions
+### 2️⃣ Predictions
 
 🚫 Describe your models here
 
-## 2️⃣ Explanatory Variables
+### 2️⃣ Explanatory Variables
 
 -   Explanatory Variable 1
 -   Explanatory Variable 2
@@ -62,7 +60,7 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 -   Explanatory Variable 4
 -   Explanatory Variable 5
 
-## Data Sources
+### Data Sources
 🚫  Add to or delete souce links as needed for your project
 
 
@@ -72,7 +70,7 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 -   [Source 4] (🚫add link to python notebook here)
 -   [Source 5] (🚫add link to python notebook here)
 
-## Python Notebooks
+### Python Notebooks
 
 🚫  Add to or delete python notebook links as needed for your project
 
@@ -82,11 +80,11 @@ Pharetra vel turpis nunc eget lorem dolor sed viverra ipsum. Donec et odio pelle
 
 [Python Notebook 3](🚫add link to python notebook here)
 
-## 3️⃣ How to connect to the web API
+### 3️⃣ How to connect to the web API
 
 🚫 List directions on how to connect to the API here
 
-## 3️⃣ How to connect to the data API
+### 3️⃣ How to connect to the data API
 
 🚫 List directions on how to connect to the API here
 
