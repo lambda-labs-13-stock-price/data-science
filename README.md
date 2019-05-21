@@ -96,7 +96,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 ### Issue/Bug Request
 
-    * If you are having an issue with the existing project code, please submit a bug report under the following guidelines:
+- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
     * Check first to see if your issue has already been reported.
     * Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
     * Create a live example of the problem.
@@ -114,11 +114,11 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 #### Pull Request Guidelines
 
-    * Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-    * Update the README.md with details of changes to the interface, including new plist variables, exposed ports, useful file locations and container parameters.
-    * Ensure that your code conforms to our existing code conventions and test coverage.
-    * Include the relevant issue number, if applicable.
-    * You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+- Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+- Update the README.md with details of changes to the interface, including new plist variables, exposed ports, useful file locations and container parameters.
+- Ensure that your code conforms to our existing code conventions and test coverage.
+- Include the relevant issue number, if applicable.
+- You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ### Attribution
 
