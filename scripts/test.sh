@@ -16,12 +16,12 @@ ContextKeyType=string\
 
 # Should succeed
 aws iam simulate-custom-policy \
-    --policy-input-list $POLICY \
+    --policy-input-list "${POLICY}" \
     --action-names ec2:RunInstances \
     --context-entries $SUCCESSFUL_CONTEXT
 
 # Should fail
 aws iam simulate-custom-policy \
-    --policy-input-list $POLICY \
+    --policy-input-list "${POLICY}" \
     --action-names ec2:RunInstances \
     --context-entries $FAILING_CONTEXT
