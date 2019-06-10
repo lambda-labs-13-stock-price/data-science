@@ -2,8 +2,10 @@ validate: template.yaml
 	aws cloudformation validate-template \
 		--template-body file://template.yaml
 
-function.zip:
+vendor: Gemfile
 	bundle install --path vendor/bundle
+
+function.zip: lambda.rb vendor
 	zip function.zip lambda.rb
 	zip -r function.zip vendor
 
