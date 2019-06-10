@@ -9,7 +9,12 @@ def handle(event, context)
     "Content-Type" => "application/json"
   }
 
-  sqs.send_message(queue_url: ENV['AWS_SQS_URL'], message_body: event.to_json )
+  if event["method"] == "POST"
+    sqs.send_message(queue_url: ENV['AWS_SQS_URL'], message_body: event.to_json )
+  else
+    status = 400
+    message = 'invalid request'
+  end
 
   {
     'statusCode' => status,
