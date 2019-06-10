@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Hidden Alphabet API 
+Description: Hidden Alphabet API
 
-Parameters: 
+Parameters:
   AwsSqsQueueUrl:
     Type: String
     Description: AWS SQS Queue URL
@@ -10,9 +10,9 @@ Parameters:
     Type: String
     Description: AWS Region where SQS Queue is located
 
-  LambdaS3Bucket: 
+  LambdaS3Bucket:
     Type: String
-    Description: Bucket containing the lambda function zipfile 
+    Description: Bucket containing the lambda function zipfile
   LambdaS3Key:
     Type: String
     Description: Path to your lambda function zipfile
@@ -38,15 +38,15 @@ Resources:
       FunctionName: hidden-alpha-api
       Handler: lambda.handler
       Runtime: ruby2.5
-      Role: !Ref Parameters::LambdaS3Role 
+      Role: !Ref Parameters::LambdaS3Role
       Environment:
         Variables:
-          AWS_SQS_URL: !Ref Parameters::AwsSqsQueueUrl 
-          AWS_REGION_CODE: !Ref Parameters::AwsRegion 
+          AWS_SQS_URL: !Ref Parameters::AwsSqsQueueUrl
+          AWS_REGION_CODE: !Ref Parameters::AwsRegion
 
 Outputs:
   HiddenAlphabetScraperJobQueueAPI:
-    Description: Hidden Alphabet API ARN 
+    Description: Hidden Alphabet API ARN
     Value:
       Fn::GetAtt:
       - HiddenAlphabetAPILambdaFunction
