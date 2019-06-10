@@ -46,4 +46,4 @@ class TWICE(object):
                 'subreddit_id': [comment.subreddit_id]
                 # can add sentiment scores here, but we just want to do it raw
                 })
-            df.to_sql('reddit-comments', engine, if_exists='append')
+            df.to_sql('reddit_comments', engine, if_exists='append')
