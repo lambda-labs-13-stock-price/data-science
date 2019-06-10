@@ -1,27 +1,4 @@
-package jobs
-
-type CrawlingJob struct {
-  Search *string
-  TweetCount int
-  LastTwitterId string
-}
-
-type ParsingJob struct {
-  Html string
-}
-
-type InsertJob struct {
-  DbEndpoint string
-  AwsRegion string
-  DbUser string
-}
-
-type StorageJob struct {
-  Html string
-  S3Bucket string
-  S3Key string
-	S3File string
-}
+package workers
 
 import (
   "os"
@@ -33,9 +10,55 @@ import (
   "github.com/PuerkitoBio/goquery"
 )
 
+/*
+  Metadata to inform the crawling of twitter.com/search
+*/
+type CrawlingJob struct {
+  Search *string
+  TweetCount int
+  LastTwitterId string
+}
+
+/*
+  Metadata to inform the parsing html from twitter.com/search
+*/
+type ParsingJob struct {
+  Html string
+}
+
+/*
+  Metadata to inform the insertion tweets from twitter.com/search into an SQL table
+*/
+type InsertJob struct {
+  DbEndpoint string
+  AwsRegion string
+  DbUser string
+}
+
+/*
+  Metadata to inform the storage of html from twitter.com/search into an S3 bucket
+*/
+type StorageJob struct {
+  Html string
+  S3Bucket string
+  S3Key string
+	S3File string
+}
+
+type Tweet map[string]string
+type Tweets []Tweet
+
+/*
+  Get HTML from twitter.com/search 
+*/
 func TwitterCrawlJob(j *Job) Job[], error {
 	var query strings.Builder
 
+  /*
+    TwitterCrawlJob is only implemented to receive jobs of the
+    type CrawlingJob, so we catch whether the given job conforms
+    to that specification. 
+  */
 	spec, ok := (*j.Info).(CrawlingJob)
 	if !ok {
     err := errors.New("Unable to coerce Job.Info to CrawlingJob")
@@ -72,6 +95,9 @@ func TwitterCrawlJob(j *Job) Job[], error {
 	filename.WriteString("-")
 	filename.WriteString(req.URL.String())
 
+  /*
+    A job specification for uploading html to S3 
+  */
 	storeHTML := &Job{
 		Type: "Store",
 		Info: &StorageJob{
@@ -82,24 +108,22 @@ func TwitterCrawlJob(j *Job) Job[], error {
 		},
 	}
 
+  /*
+    A job specification for parsing html into json
+  */
 	parseHtml := &Job{
 		Type: "Parse",
 		Info: &ParsingJob{ Html: html, },
 	}
-
-  crawlNext := &Job{
-    Type: "Crawl",
-    Info: &CrawlingJob{}
-  }
 
 	jobs := Job[]{ storeHTML, parseHtml }
 
 	return jobs, nil
 }
 
-type Tweet map[string]string
-type Tweets []Tweet
-
+/*
+  Parse HTML tweets from twitter.com/serach into json
+*/
 func TwitterParseJob(j *Job) Job[], error {
   tweets := make(Tweets)
 
@@ -193,6 +217,16 @@ func TwitterParseJob(j *Job) Job[], error {
 	return next, nil
 }
 
+/*
+  Store unparsed HTML to an AWS S3 Bucket
+*/
 func TwitterStoreJob(j *Job) *Job[], error {
 	return nil
+}
+
+/*
+  Insert parsed tweets into an AWS RDS SQL table
+*/
+func TwitterInsertJob(j *job) *Job, error {
+
 }
