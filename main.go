@@ -7,24 +7,7 @@ import (
 )
 
 func main() {
-	workerCount := 20
-	workerQueue := make(chan *workers.Worker, workerCount)
-
-  /*
-    Instantiating worker goroutines to do work as they
-    become ready.
-  */
-	for i := 0; i < workerCount; i++ {
-		worker := &workers.Worker{
-			Id: i,
-			JobQueue: make(chan workers.Job),
-			WorkerQueue: workerQueue,
-		}
-
-		go worker.Work()
-
-		workerQueue <- worker
-	}
+  workerQueue := workers.New(20)
 
   /*
     When a task is available for a worker to do, we parse it
