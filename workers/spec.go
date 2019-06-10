@@ -5,11 +5,13 @@ type Job struct {
   Info *interface {}
 }
 
+type Processor func(Job) (Job[], error)
+
 type Worker struct {
   Id int
   JobQueue chan Job
   WorkerQueue chan Worker
-  Process func(Job) (Job[], error)
+  Process Processor
 }
 
 func (w *Worker) Work() {
