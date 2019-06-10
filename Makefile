@@ -12,7 +12,7 @@ function.zip: lambda.rb vendor
 create: function.zip
 	aws lambda create-function \
 		--function-name hidden-alphabet-api \
-		--handler lambda.handler \
+		--handler lambda.handle \
 		--runtime ruby2.5 \
 		--role arn:aws:iam::465245944185:role/aws-lambda-hidden-alphabet-api \
 		--zip-file fileb://function.zip
