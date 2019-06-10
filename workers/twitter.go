@@ -122,7 +122,7 @@ func TwitterCrawlJob(j *Job) Job[], error {
 }
 
 /*
-  Parse HTML tweets from twitter.com/serach into json
+  Parse HTML tweets from twitter.com/search into json
 */
 func TwitterParseJob(j *Job) Job[], error {
   tweets := make(Tweets)
