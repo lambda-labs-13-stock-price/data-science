@@ -19,7 +19,7 @@ class TWICE(object):
 
         self.subreddits = subreddits
 
-    def subreddit_query(self):
+    def subreddit_query(self, subreddits):
 
         query = ""
 
