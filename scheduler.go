@@ -1,6 +1,7 @@
 package scheduler
 
 import (
+  "log"
   "time"
 )
 
@@ -56,6 +57,8 @@ type Scheduler struct {
   Create a new scheduler. 
 */
 func New() (*Scheduler, error) {
+  log.Printf("[Scheduler] Created Scheduler.")
+
   scheduler := &Scheduler{
     TotalTasks: 0,
     Registrar: make(map[string]Worker),
@@ -75,11 +78,14 @@ func New() (*Scheduler, error) {
 func (s *Scheduler) Scale(n int) error {
   current := s.TotalTasks
 
+  log.Printf("[Scheduler] Scaling available tasks from %d to %d", current, current+n)
+
   for id := current; id < current+n; id++ {
     task := &Task{
       Scheduler:      s,
     }
 
+    log.Printf("[Scheduler] Starting task.")
     go task.Run()
 
     println("Adding task to queue")
@@ -97,6 +103,7 @@ func (s *Scheduler) Scale(n int) error {
   Create a new worker.
 */
 func (s *Scheduler) RegisterWorker(name string, worker Worker) {
+  log.Printf("[Scheduler] Registered worker '%s'", name)
   s.Registrar[name] = worker
 }
 
@@ -104,6 +111,7 @@ func (s *Scheduler) RegisterWorker(name string, worker Worker) {
   Create a new job.
 */
 func (s *Scheduler) NewJob(name string, ctx interface{}) *Job {
+  log.Printf("[Scheduler] Created job for '%s' worker.", name)
   return &Job{
     Name: name,
     Context: ctx,
@@ -138,7 +146,11 @@ func (s *Scheduler) AddJob(job *Job) error {
   a job queue.
 */
 func (t *Task) Run() {
+  log.Printf("[Task] Started.")
+
   registrar := t.Scheduler.Registrar
+
+  log.Printf("[Task] Waiting for jobs to become available.")
 
 	for job := range t.Jobs {
     worker := registrar[job.Name]
@@ -151,7 +163,11 @@ func (t *Task) Run() {
       }
     }
 
+    log.Printf("[Task] Completed Work.")
+
     t.Scheduler.Tasks <- t
     t.Scheduler.ActiveTasks -= 1
 	}
+
+  log.Printf("[Task] Done.")
 }
