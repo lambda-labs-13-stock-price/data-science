@@ -1,3 +1,0 @@
-# coming soon...
-
-- alot to explain here, i'll be sure to explain.
