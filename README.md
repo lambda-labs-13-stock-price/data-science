@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
@@ -48,7 +49,27 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ### Tech Stack
 
-🚫 List all of the languages, frameworks, services, etc used here.
+![AWS Service Architecture Diagram](./static/stock-price-architecture.svg)
+
+#### Scraper
+
+TODO
+
+#### Enrichment
+
+TODO
+
+#### Model
+
+TODO
+
+#### API Server
+
+TODO
+
+#### Web Server
+
+TODO
 
 ### 2️⃣ Predictions
 
@@ -131,4 +152,7 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 See [Backend Documentation](_link to your backend readme here_) for details on the backend of our project.
 
 See [Front End Documentation](_link to your front end readme here_) for details on the front end of our project.
+
+=======
+
 
