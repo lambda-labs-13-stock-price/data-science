@@ -16,9 +16,9 @@ import (
   ".."
 )
 
-const RibbonFarmCrawlJob = "RibbonFarmCrawlJob"
+const RibbonFarmCrawlJobName = "RibbonFarmCrawlJobName"
 
-type CrawlJob struct {
+type RibbonFarmCrawlJob struct {
   URL string
   Titles *[]string
   Mutex *sync.Mutex
@@ -28,27 +28,25 @@ type CrawlJob struct {
   Crawls through Ribbon Farm's pagination to get the title of every ribbonfarm post
 */
 func main() {
-  println("Creating scheduler...")
-
   s, err := scheduler.New()
   if err != nil {
     log.Fatal(err)
   }
 
-  println("Registering Ribbon Farm Crawler Worker...")
+  log.Printf("[Crawler] Registering RibbonFarmCrawlerJob Worker.")
 
-  s.RegisterWorker(RibbonFarmCrawlJob, func(ctx interface{}) *scheduler.WorkerOutput {
+  s.RegisterWorker(RibbonFarmCrawlJobName, func(ctx interface{}) *scheduler.WorkerOutput {
     output := &scheduler.WorkerOutput{}
 
-    println("Starting job...")
+    log.Printf("[Crawler] Started RibbonFarmCrawlJob Worker.")
 
-    job, ok := ctx.(CrawlJob)
+    job, ok := ctx.(RibbonFarmCrawlJob)
     if !ok {
       output.Error = errors.New("Unable to cast context to CrawlJob.")
       return output
     }
 
-    println("Downloading HMTL from: ", job.URL)
+    log.Printf("[Crawler] Downloading HMTL from: %s", job.URL)
 
     res, err := http.Get(job.URL)
     if err != nil {
@@ -56,11 +54,15 @@ func main() {
       return output
     }
 
+    log.Printf("[Crawler] Parsing HTML.")
+
     document, err := goquery.NewDocumentFromReader(res.Body)
     if err != nil {
       output.Error = err
       return output
     }
+
+    log.Printf("[Crawler] Parsing RibbonFarm Titles.")
 
     document.Find("div.post").Each(func(i int, s *goquery.Selection) {
       job.Mutex.Lock()
@@ -68,30 +70,39 @@ func main() {
       job.Mutex.Unlock()
     })
 
-    if link, exists := document.Find("div.navigation").Find("li.navigation-next").Find("a").Attr("href"); exists {
-      crawlJob := s.NewJob(RibbonFarmCrawlJob, CrawlJob{
+    log.Printf("[Crawler] Parsing RibbonFarm Links.")
+
+    if link, exists := document.Find("div.navigation").Find("li.pagination-next").Find("a").Attr("href"); exists {
+
+      log.Printf("[Crawler] Creating RibbonFarmCrawlJob To Parse: %s.", link)
+
+      crawlJob := s.NewJob(RibbonFarmCrawlJobName, RibbonFarmCrawlJob{
         URL: link,
         Titles: job.Titles,
         Mutex: job.Mutex,
       })
+
       output.Jobs = append(output.Jobs, crawlJob)
+    } else {
+      log.Printf("[Crawler] No Links Found.")
+
+      return output
     }
+
+    log.Printf("[Crawler] Done.")
 
     return output
   })
 
   titles := []string{}
 
-  println("Starting...")
+  log.Printf("[Crawler] Starting.")
 
-  err = s.AddJob(s.NewJob(RibbonFarmCrawlJob, &CrawlJob{
+  s.SubmitJob(s.NewJob(RibbonFarmCrawlJobName, RibbonFarmCrawlJob{
     URL: "https://ribbonfarm.com",
     Titles: &titles,
     Mutex: &sync.Mutex{},
   }))
-  if err != nil {
-    log.Fatal(err)
-  }
 
   <-s.Done
 }
