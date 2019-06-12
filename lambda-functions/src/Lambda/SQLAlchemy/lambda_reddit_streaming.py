@@ -5,9 +5,9 @@ from db_utils import *
 
 engine = create_engine(db_host)
 
-REDDIT_CLIENT_ID = "VXYCrQAymaBrLQ"
-REDDIT_CLIENT_SECRET = "0Wwvv9zptchx7iqweK52cvbtX4A"
-REDDIT_USER_AGENT = "WSB"
+REDDIT_CLIENT_ID = "VXY..."
+REDDIT_CLIENT_SECRET = "0Ww..."
+REDDIT_USER_AGENT = "W.."
 
 reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
                      client_secret=REDDIT_CLIENT_SECRET,
