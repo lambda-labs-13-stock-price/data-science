@@ -26,7 +26,7 @@ class RedditClient(val applicationId: String,
                    val fetcher: ResponseFetcher = new DefaultResponseFetcher())
   extends Serializable with Logger {
 
-  protected val userAgent = s"FotisReddit/0.1 by ${this.applicationId}"
+  protected val userAgent = s"RedditStreaming by ${this.applicationId}"
   protected val deviceId = UUID.randomUUID().toString
   protected var clientCredentials: Option[ClientCredentials] = None
 
