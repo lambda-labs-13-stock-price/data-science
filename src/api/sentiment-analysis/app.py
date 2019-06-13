@@ -5,14 +5,14 @@ import pandas as pd
 import json
 import os
 
-app = Flask(__name__)
-
 TICKERS_TO_COMPANY = json.loads(open('tickers.json').read())
 
 PG_USER = os.environ['PG_USER']
 PG_PASS = os.environ['PG_PASS']
 PG_HOST = os.environ['PG_HOST']
 PG_PORT = os.environ['PG_PORT']
+
+app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def main():
