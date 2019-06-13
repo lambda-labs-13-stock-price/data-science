@@ -5,8 +5,8 @@ import random
 import sqlalchemy as db
 from functools import reduce
 
-app = Flask(__name__)
 
+app = Flask(__name__)
 
 file = []
 with open('tickers.txt','r') as inf:
@@ -14,9 +14,9 @@ with open('tickers.txt','r') as inf:
         file.append(eval(line))
 ticker_aliases = file[0]
 
-#Route for Production
+
 @app.route('/', methods=['POST'])
-def predict():
+def data_search(search):
    engine = db.create_engine('postgresql+psycopg2://HIDDENALPHABET:password@hiddenalphabet-db.ceqxyonbodui.us-east-1.rds.amazonaws.com:5432/HiddenAlphabet')
    connection = engine.connect()
    metadata = db.MetaData()
@@ -26,16 +26,11 @@ def predict():
    ResultSet = ResultProxy.fetchall()
    CORPUS = pd.DataFrame(ResultSet)
    CORPUS.columns = ResultSet[0].keys()
-   json = request.get_json(force=True)
-   ticker = json['query']      
+   scores = CORPUS[['sentiment_score','time']]
+   does_match_search = CORPUS['text'].str.contains(search)
+   matching_scores = scores[does_match_search]
+   return jsonify(matching_scores.to_dict())
 
-   lowercase = CORPUS['text'].str.lower()
-   masks = [lowercase.str.contains(alias) for alias in ticker_aliases[ticker]]
-   contains_any_alias = reduce(lambda agg, curr: agg | curr, masks)
-   matching_text = CORPUS[contains_any_alias]
-   average_score = matching_text['sentiment_score'].mean()
-
-   return jsonify(score=average_score)
 
 if __name__ == '__main__':
     app.run()
