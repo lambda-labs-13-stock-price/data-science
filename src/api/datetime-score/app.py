@@ -1,8 +1,9 @@
-import numpy as np
-import pandas as pd
 from flask import Flask, abort, jsonify, request, url_for
-import random
 import sqlalchemy as db
+import pandas as pd
+import numpy as np
+import random
+import json
 
 app = Flask(__name__)
 
@@ -13,13 +14,13 @@ with open('tickers.txt','r') as inf:
 ticker_aliases = file[0]
 
 @app.route('/', methods=['POST'])
-def data_search(search):
+def main(search):
    engine = db.create_engine('postgresql+psycopg2://HIDDENALPHABET:password@hiddenalphabet-db.ceqxyonbodui.us-east-1.rds.amazonaws.com:5432/HiddenAlphabet')
    connection = engine.connect()
 
    metadata = db.MetaData()
-   testtable = db.Table('reddit-comments', metadata, autoload=True, autoload_with=engine)
-   query = db.select([testtable])
+   comments = db.Table('reddit-comments', metadata, autoload=True, autoload_with=engine)
+   query = db.select([comments])
    cursor = connection.execute(query)
    rows = cursor.fetchall()
 
