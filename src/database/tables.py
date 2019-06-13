@@ -38,3 +38,12 @@ class Tweets(Base):
     retweets = Column(Integer)
     likes = Column(Integer)
     text = Column(String)
+
+class RedditPost(Base):
+    __tablename__ = 'reddit_comments'
+
+    id = Column(Integer, primary_key=True)
+    text = Column(String)
+    time = Column(DateTime)
+    timestamp = Column(DateTime(timezone=True), server_default=pg_utcnow())
+    subreddit_id = Column(String)

@@ -11,8 +11,8 @@ def setup(username, password, host, port, drivername='postgres'):
         'port': port
     }
 
-    uri = URL(**postgres_db).__to_string__()
-    engine = create_engine(uri)
+    url = URL(**postgres_db).__to_string__()
+    engine = create_engine(url)
     Session = sessionmaker(bind=engine)
 
     return Session()
