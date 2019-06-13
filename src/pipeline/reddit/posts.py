@@ -61,4 +61,3 @@ if __name__ == '__main__':
     if func.is_alive():
         func.terminate()
         func.join()
-
