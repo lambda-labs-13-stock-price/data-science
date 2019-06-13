@@ -30,7 +30,7 @@ def main():
     corpus.columns = rows[0].keys()
     json = request.get_json(force=True)
 
-    ticker = json['query']      
+    ticker = json['query']
 
     lowercase = CORPUS['text'].str.lower()
     contains_name_masks = [lowercase.str.contains(company) for company in TICKERS_TO_COMPANY[ticker]]
