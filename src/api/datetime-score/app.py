@@ -1,7 +1,6 @@
-from flask import Flask, abort, jsonify, request, url_for
+from flask import Flask, jsonify, request
 import sqlalchemy as db
 import pandas as pd
-import numpy as np
 import random
 import json
 
