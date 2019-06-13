@@ -13,9 +13,9 @@ PG_HOST = os.environ['PG_HOST']
 PG_PORT = os.environ['PG_PORT']
 
 @app.route('/', methods=['POST'])
-def main(search):
-   engine = db.create_engine('postgresql+psycopg2://HIDDENALPHABET:password@hiddenalphabet-db.ceqxyonbodui.us-east-1.rds.amazonaws.com:5432/HiddenAlphabet')
-   connection = engine.connect()
+def main():
+    req = request.get_json()
+    search = req['search']
 
     url = 'postgresql://'+PG_USER+':'+PG_PASS+'@'+PG_HOST+':'+PG_PORT+'/HiddenAlphabet'
     engine = db.create_engine(url)
