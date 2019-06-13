@@ -17,13 +17,6 @@ def pg_unix_to_utc(element,compiler,**kw):
     return "TIMEZONE('utc', CURRENT_TIMESTAMP)"
 
 class Tweets(Base):
-    '''
-    CreateTable : no default name, must inherit Base object and specify a name
-    with __tablename__.
-    inheritable object that can instantiate different tweets tables
-    if we need to a) create new tables with different names,
-    or automate table creation in the future.
-    '''
     __tablename__ = 'tweets'
     id = Column(Integer, primary_key=True)
     tweet_id = Column(String)
