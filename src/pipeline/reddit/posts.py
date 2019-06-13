@@ -3,11 +3,13 @@ from sqlalchemy import create_engine, inspect
 from sqlalchemy.engine.url import URL
 import praw, time, os
 
+TABLE = 'reddit_posts'
+
 HOST = os.environ['PG_HOSTNAME']
 PORT = os.environ['PG_PORT']
 USER = os.environ['PG_USERNAME']
 PASS = os.environ['PG_PASSWORD']
-TABLE = 'reddit_posts'
+
 REDDIT_CLIENT_ID = os.environ['REDDIT_CLIENT_ID']
 REDDIT_CLIENT_SECRET = os.environ['REDDIT_CLIENT_SECRET']
 REDDIT_USER_AGENT = os.environ['REDDIT_USER_AGENT']
@@ -27,12 +29,12 @@ def handler():
         host=HOST,
         port=PORT
     )
+
     url = URL(**postgres_params).__to_string__()
     engine = create_engine(url)
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # might delete this later
     if TABLE not in inspect(engine).get_table_names():
         reddit_posts = RedditPost().create(engine)
 
