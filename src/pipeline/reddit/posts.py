@@ -20,8 +20,7 @@ REDDIT = praw.Reddit(
     user_agent=REDDIT_USER_AGENT
 )
 
-# for lambda function pass these args : (event, context)
-def handler():
+def handler(event, context):
     postgres_params = dict(
         drivername='postgres',
         username=USER,
