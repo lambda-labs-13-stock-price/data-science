@@ -1,5 +1,4 @@
 import os
-import logging
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import SQLAlchemyError
@@ -8,14 +7,23 @@ from sqlalchemy.ext.compiler import compiles
 from sqlalchemy.sql import expression
 from sqlalchemy import create_engine, inspect, MetaData, Table, Column, Integer, String, DateTime
 
-# Global variables
-postgres_db = {
-	'drivername':'postgres',
-	'username': os.environ['PG_USERNAME'],
-	'password': os.environ['PG_PASSWORD'],
-	'host': os.environ['PG_HOST'],
-	'port': 5432
-	}
+# Global variables / RDS_HOSTNAME is configurable from Elastic Beanstalk.
+if 'RDS_HOSTNAME' in os.environ:
+	postgres_db = {
+		'drivername':'postgres',
+		'username': os.environ['RDS_USERNAME'],
+		'password': os.environ['RDS_PASSWORD'],
+		'host': os.environ['RDS_HOST'],
+		'port': os.environ['RDS_PORT']
+		}
+else:
+	postgres_db = {
+		'drivername':'postgres',
+		'username': os.environ['PG_USERNAME'],
+		'password': os.environ['PG_PASSWORD'],
+		'host': os.environ['PG_HOST'],
+		'port': os.environ['PG_PORT']
+		}
 
 DB_URI = URL(**postgres_db)
 ENGINE = create_engine(DB_URI)

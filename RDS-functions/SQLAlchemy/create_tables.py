@@ -4,6 +4,8 @@ from utils import ENGINE, CreateTable, CreateTweetsTable
 METADATA = MetaData()
 METADATA.reflect(bind=ENGINE)
 
+# useful function, will be deprecated when class object is built out and reusable.
+
 def create_table(name, METADATA):
 	'''
 		Create a new table with a specified name.
