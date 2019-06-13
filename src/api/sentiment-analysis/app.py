@@ -7,33 +7,31 @@ from functools import reduce
 
 app = Flask(__name__)
 
+TICKERS_TO_COMPANY = json.loads(open('tickers.json').read())
 
-file = []
-with open('tickers.txt','r') as inf:
-    for line in inf:
-        file.append(eval(line))
-ticker_aliases = file[0]
-
-#Route for Production
 @app.route('/', methods=['POST'])
-def predict():
+def main():
    engine = db.create_engine('postgresql+psycopg2://HIDDENALPHABET:password@hiddenalphabet-db.ceqxyonbodui.us-east-1.rds.amazonaws.com:5432/HiddenAlphabet')
    connection = engine.connect()
    metadata = db.MetaData()
-   testtable = db.Table('reddit-comments', metadata, autoload=True, autoload_with=engine)
-   query = db.select([testtable])
-   ResultProxy = connection.execute(query)
-   ResultSet = ResultProxy.fetchall()
-   CORPUS = pd.DataFrame(ResultSet)
-   CORPUS.columns = ResultSet[0].keys()
+   comments = db.Table('reddit-comments', metadata, autoload=True, autoload_with=engine)
+
+   query = db.select([comments])
+   cursor = connection.execute(query)
+   rows = cursor.fetchall()
+
+   corpus = pd.DataFrame(rows)
+   corpus.columns = rows[0].keys()
    json = request.get_json(force=True)
+
    ticker = json['query']      
 
    lowercase = CORPUS['text'].str.lower()
-   masks = [lowercase.str.contains(alias) for alias in ticker_aliases[ticker]]
-   contains_any_alias = reduce(lambda agg, curr: agg | curr, masks)
-   matching_text = CORPUS[contains_any_alias]
-   average_score = matching_text['sentiment_score'].mean()
+   contains_name_masks = [lowercase.str.contains(company) for company in TICKERS_TO_COMPANY[ticker]]
+   any_comany_alias = reduce(lambda agg, curr: agg | curr, contains_name_masks)
+
+   matching = corpus[any_company_alias]
+   average_score = matching['sentiment_score'].mean()
 
    return jsonify(score=average_score)
 
