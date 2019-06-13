@@ -49,28 +49,6 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 ### Tech Stack
 
-![AWS Service Architecture Diagram](./static/stock-price-architecture.svg)
-
-#### Scraper
-
-TODO
-
-#### Enrichment
-
-TODO
-
-#### Model
-
-TODO
-
-#### API Server
-
-TODO
-
-#### Web Server
-
-TODO
-
 ### 2️⃣ Predictions
 
 🚫 Describe your models here
