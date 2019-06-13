@@ -1,8 +1,11 @@
 require 'aws-sdk-sqs'
 require 'json'
 
+REGION = ENV['AWS_REGION_CODE']
+QUEUE_URL = ENV['AWS_SQS_URL']
+
 def handle(event:, context:)
-  sqs = Aws::SQS::Client.new(region: ENV['AWS_REGION_CODE'])
+  sqs = Aws::SQS::Client.new(region: REGION)
   message = 'success'
   status = 200
   headers = {
@@ -10,7 +13,7 @@ def handle(event:, context:)
   }
 
   if event["httpMethod"] == "POST"
-    sqs.send_message(queue_url: ENV['AWS_SQS_URL'], message_body: event.to_json )
+    sqs.send_message(queue_url: QUEUE_URL, message_body: event.to_json )
   else
     status = 400
     message = 'invalid request'
