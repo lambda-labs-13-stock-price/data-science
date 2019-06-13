@@ -35,7 +35,7 @@ def handler(event, context):
     session = Session()
 
     if TABLE not in inspect(engine).get_table_names():
-        reddit_posts = RedditPost().create(engine)
+        raise Exception("Unable to find the table '%s' in '%s'".format(TABLE, url))
 
     # could add custom sleep here?
     # or how would we execute every hour?
