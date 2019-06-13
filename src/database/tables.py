@@ -5,10 +5,10 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
-# per https://docs.sqlalchemy.org/en/13/core/compiler.html#utc-timestamp-function
-# Given that SQLAlchemy does not by default support conversion to UTC timestamps from
-# Unix timestamps, the following class and function thereafter implement a means to
-# automatically convert from the latter to the former.
+# Per https://docs.sqlalchemy.org/en/13/core/compiler.html#utc-timestamp-function,
+# SQLAlchemy does not, by default, support conversion to UTC timestamps from Unix
+# timestamps. The `utcnow` class, and `pg_utcnow` function thereafter, implement a
+# means of automatically converting from Unix to UTC at insert time.
 class utcnow(expression.FunctionElement):
     type = DateTime()
 
