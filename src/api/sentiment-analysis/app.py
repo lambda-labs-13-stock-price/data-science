@@ -1,9 +1,7 @@
-import numpy as np
-import pandas as pd
-from flask import Flask, abort, jsonify, request, url_for
-import random
-import sqlalchemy as db
+from flask import Flask, jsonify, request
 from functools import reduce
+import sqlalchemy as db
+import pandas as pd
 
 app = Flask(__name__)
 
