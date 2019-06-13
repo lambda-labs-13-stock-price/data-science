@@ -1,8 +1,18 @@
-from sqlalchemy import inspect
+from sqlalchemy.engine.url import URL
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
-def does_table_exist(table, engine):
-	'''
-	Inspect database to check whether or not a table exists.
-	:name: String , name of table
-	'''
-	return True if table in inspect(engine).get_table_names() else False
+def connect(username, password, host, port, drivername='postgres'):
+    postgres_db = {
+        'drivername': drivername,
+        'username': username,
+        'password': password,
+        'host': host,
+        'port': port
+    }
+
+    url = URL(**postgres_db).__to_string__()
+    engine = create_engine(url)
+    Session = sessionmaker(bind=engine)
+
+    return Session()
