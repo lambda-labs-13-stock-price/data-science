@@ -7,13 +7,13 @@ Base = declarative_base()
 
 # Per https://docs.sqlalchemy.org/en/13/core/compiler.html#utc-timestamp-function,
 # SQLAlchemy does not, by default, support conversion to UTC timestamps from Unix
-# timestamps. The `utcnow` class, and `pg_utcnow` function thereafter, implement a
+# timestamps. The `UTC` class, and `pg_unix_to_utc` function thereafter, implement a
 # means of automatically converting from Unix to UTC at insert time.
-class utcnow(expression.FunctionElement):
+class UTC(expression.FunctionElement):
     type = DateTime()
 
-@compiles(utcnow, 'postgresql')
-def pg_utcnow(element,compiler,**kw):
+@compiles(UTC, 'postgresql')
+def pg_unix_to_utc(element,compiler,**kw):
     return "TIMEZONE('utc', CURRENT_TIMESTAMP)"
 
 class Tweets(Base):
@@ -34,16 +34,16 @@ class Tweets(Base):
     permalink = Column(String, key='link')
     language = Column(String)
     time = Column(DateTime)
-    timestamp = Column(DateTime(timezone=True), server_default=pg_utcnow())
+    timestamp = Column(DateTime(timezone=True), server_default=pg_unix_to_utc())
     retweets = Column(Integer)
     likes = Column(Integer)
     text = Column(String)
 
-class RedditPost(Base):
+class RedditComments(Base):
     __tablename__ = 'reddit_comments'
 
     id = Column(Integer, primary_key=True)
     text = Column(String)
     time = Column(DateTime)
-    timestamp = Column(DateTime(timezone=True), server_default=pg_utcnow())
+    timestamp = Column(DateTime(timezone=True), server_default=pg_unix_to_utc())
     subreddit_id = Column(String)
