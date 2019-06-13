@@ -21,14 +21,20 @@ def main():
     engine = db.create_engine(url)
     connection = engine.connect()
 
-   corpus = pd.DataFrame(rows)
-   corpus.columns = rows[0].keys()
+    metadata = db.MetaData()
+    comments = db.Table('reddit-comments', metadata, autoload=True, autoload_with=engine)
+    query = db.select([comments])
+    cursor = connection.execute(query)
+    rows = cursor.fetchall()
 
-   scores = CORPUS[['sentiment_score','time']]
-   does_match_search = CORPUS['text'].str.contains(search)
-   matching_scores = scores[does_match_search]
+    corpus = pd.DataFrame(rows)
+    corpus.columns = rows[0].keys()
 
-   return jsonify(matching_scores.to_dict())
+    scores = corpus[['sentiment_score','time']]
+    does_match_search = corpus['text'].str.contains(search)
+    matching_scores = scores[does_match_search]
+
+    return jsonify(matching_scores.to_dict())
 
 if __name__ == '__main__':
     app.run()
