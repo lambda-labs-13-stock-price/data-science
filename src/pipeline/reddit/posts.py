@@ -37,10 +37,7 @@ def handler(event, context):
     if TABLE not in inspect(engine).get_table_names():
         raise Exception("Unable to find the table '%s' in '%s'".format(TABLE, url))
 
-    # could add custom sleep here?
-    # or how would we execute every hour?
-    # check below for a really janky way of terminating
-    for comment in reddit.subreddit('all').stream.comments():
+    for comment in REDDIT.subreddit('all').stream.comments():
         reddit_post = RedditPost(
             text=comment.body,
             time=comment.created_utc,
@@ -48,14 +45,5 @@ def handler(event, context):
             subreddit_id=comment.subreddit_id
         )
         session.add(reddit_post)
-        session.commit()
 
-if __name__ == '__main__':
-
-    func = multiprocessing.Process(target=handler, name="Add new Reddit posts", args=())
-    func.start()
-    # run for 10 minutes then stop
-    time.sleep(600)
-    if func.is_alive():
-        func.terminate()
-        func.join()
+    session.commit()
