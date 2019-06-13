@@ -7,11 +7,7 @@ import json
 
 app = Flask(__name__)
 
-file = []
-with open('tickers.txt','r') as inf:
-    for line in inf:
-        file.append(eval(line))
-ticker_aliases = file[0]
+TICKERS = json.loads(open('tickers.json').read())
 
 @app.route('/', methods=['POST'])
 def main(search):
