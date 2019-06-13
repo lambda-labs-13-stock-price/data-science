@@ -1,10 +1,7 @@
-import praw
-import os
-import time
-from multiprocessing import Pool, Process
-from sqlalchemy.engine.url import URL
+from .database.tables import RedditPost, pg_utcnow
 from sqlalchemy import create_engine, inspect
-from .database.tables import RedditPost,pg_utcnow
+from sqlalchemy.engine.url import URL
+import praw, time, os
 
 HOST = os.environ['PG_HOSTNAME']
 PORT = os.environ['PG_PORT']
