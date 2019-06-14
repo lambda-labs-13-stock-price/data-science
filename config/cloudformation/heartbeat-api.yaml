@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Heartbeat API
+
+Resources:
+  Function:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: task-scheduler
+      Handler: lambda.handler
+      Runtime: python3.6
+      Role: arn:aws:iam::465245944185:role/aws-lambda-cli-role
+      Code:
+        ZipFile: |
+          import json
+
+          def handler():
+            return {
+              'statusCode': 200,
+              'headers': { 'Content-Type': 'application/json' },
+              'body': json.dumps({ 'alive': true })
+            }
+
+  API:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: Task Scheduling API
+      FailOnWarnings: true
+
+  FunctionInvocationPermissions:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt [Function, Arn]
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Join
+        -  ""
+        -
+          - "arn:aws:execute-api:"
+          - !Ref AWS::Region
+          - ":"
+          - !Ref AWS::AccountId
+          - ":"
+          - !Ref API
+          - "/*"
+
+  POST:
+    Type: AWS::ApiGateway::Method
+    DependsOn:
+      - FunctionInvocationPermissions
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: POST
+      ResourceId: !Ref Route
+      RestApiId: !Ref API
+      MethodResponses:
+        StatusCode: 200
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri: !Join
+          - ""
+          -
+            - "arn:aws:apigateway:"
+            - !Ref AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - !GetAtt [Function, Arn]
+            - "/invocations"
+        IntegrationResponses:
+          StatusCode: 200
+
+  Proxy:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - POST
+    Properties:
+      RestApiId: !Ref API
+      StageName: "testing"
+
+  Route:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref API
+      ParentId: !GetAtt [API, RootResourceId]
+      PathPart: "v1"
+
+  Middleware:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId: !Ref Proxy
+      MethodSettings:
+        HttpMethod: "*"
+        LoggingLevel: INFO
+        ResourcePath: "/*"
+      ResourcePath: !Ref Route
+      StageName: LATEST
+
+Outputs:
+  FunctionArn:
+    Value: !GetAtt [Function, Arn]
+  APIGatewayURL:
+    Value: !Sub "https://${API}.execute-api.${AWS::Region}.amazonaws.com/${Middleware}"
