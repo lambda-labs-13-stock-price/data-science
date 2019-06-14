@@ -32,7 +32,7 @@ def handler(event, context):
         database=NAME
     )
 
-    url = URL(**postgres_params).__to_string__()
+    url = URL(**postgres_params)
     engine = create_engine(url)
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -44,8 +44,8 @@ def handler(event, context):
         reddit_post = RedditPost(
             text=comment.body,
             time=comment.created_utc,
-            timestamp=pg_utcnow(),
-            subreddit_id=comment.subreddit_id
+            subreddit_id=comment.subreddit_id,
+            score=comment.score
         )
         session.add(reddit_post)
 
