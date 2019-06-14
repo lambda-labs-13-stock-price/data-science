@@ -5,8 +5,8 @@ Resources:
   Function:
     Type: AWS::Lambda::Function
     Properties:
-      Handler: lambda.handler
       FunctionName: system-status-api
+      Handler: index.handler
       Runtime: python3.6
       Role: arn:aws:iam::465245944185:role/aws-lambda-cli-role
       Code:
