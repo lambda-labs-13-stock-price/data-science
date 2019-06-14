@@ -91,7 +91,7 @@ Resources:
         HttpMethod: "*"
         LoggingLevel: INFO
         ResourcePath: "/*"
-      ResourcePath: !Ref Route
+      RestApiId: !Ref API
       StageName: LATEST
 
 Outputs:
