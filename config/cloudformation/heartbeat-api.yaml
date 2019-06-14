@@ -53,7 +53,7 @@ Resources:
       ResourceId: !Ref Route
       RestApiId: !Ref API
       MethodResponses:
-        StatusCode: 200
+        - StatusCode: 200
       Integration:
         Type: AWS
         IntegrationHttpMethod: POST
@@ -66,7 +66,7 @@ Resources:
             - !GetAtt [Function, Arn]
             - "/invocations"
         IntegrationResponses:
-          StatusCode: 200
+          - StatusCode: 200
 
   Proxy:
     Type: AWS::ApiGateway::Deployment
