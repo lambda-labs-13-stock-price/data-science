@@ -1,0 +1,15 @@
+# If you need to add API keys (e.g. AWS Acceess Keys) follow the below instructions:
+# https://docs.travis-ci.com/user/environment-variables/#encrypting-environment-variables
+env:
+  global:
+    - AWS_DEFAULT_REGION=us-west-2 
+
+before_install:
+  - pip install --upgrade --user awscli
+  - gem install yaml-lint
+
+install: true
+
+script:
+  - make lint
+  - make test
