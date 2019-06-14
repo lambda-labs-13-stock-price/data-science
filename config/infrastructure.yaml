@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Metadata:
+  Tags:
+    - 
+      Key: version
+      Value: 0.0.0
+    -
+      Key: codename
+      Value: superwhisper
+
+Resources:
+  Accounts:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  Permissions:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  Networking:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  S3:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  RDS:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  EC2: 
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  Lambda:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
+
+  Glue:
+    Type: AWS::CloudFormation::Stack
+    Properties: 
+      TemplateURL: # TODO
