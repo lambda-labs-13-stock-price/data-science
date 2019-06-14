@@ -19,7 +19,7 @@ endef
 
 lint:
 	yaml-lint $(CLOUDFORMATION_CONFIG)
-	eslint $(IAM_POLICIES)
+	npm run lint
 
 test:
 	$(foreach template, $(CLOUDFORMATION_CONFIG), aws cloudformation validate-template --template-body file://$(template);) 
