@@ -1,17 +1,22 @@
-from .database.tables import RedditPost, pg_utcnow
-from sqlalchemy import create_engine, inspect
+import praw
+import os
+import time
+import threading
+from dotenv import load_dotenv
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import sessionmaker
-import praw, os
+from sqlalchemy import create_engine, inspect
+from tables import RedditPost, utcnow
+from func_timeout import func_timeout, FunctionTimedOut
 
-TABLE = 'reddit_posts'
+load_dotenv()
 
 HOST = os.environ['PG_HOSTNAME']
 PORT = os.environ['PG_PORT']
 USER = os.environ['PG_USERNAME']
 PASS = os.environ['PG_PASSWORD']
 NAME = os.environ['PG_DBNAME']
-
+TABLE = 'reddit_posts'
 REDDIT_CLIENT_ID = os.environ['REDDIT_CLIENT_ID']
 REDDIT_CLIENT_SECRET = os.environ['REDDIT_CLIENT_SECRET']
 REDDIT_USER_AGENT = os.environ['REDDIT_USER_AGENT']
@@ -22,7 +27,8 @@ REDDIT = praw.Reddit(
     user_agent=REDDIT_USER_AGENT
 )
 
-def handler(event, context):
+# for lambda function pass these args : (event, context)
+def handler():
     postgres_params = dict(
         drivername='postgres',
         username=USER,
@@ -31,15 +37,20 @@ def handler(event, context):
         port=PORT,
         database=NAME
     )
-
     url = URL(**postgres_params)
+    print('>>> engine url created')
     engine = create_engine(url)
+    print('>>> engine instantiated')
     Session = sessionmaker(bind=engine)
+    print('>>> engine binded to sessionmaker')
     session = Session()
+    print('>>> Session instantiated')
 
-    if TABLE not in inspect(engine).get_table_names():
-        raise Exception("Unable to find the table '%s' in '%s'".format(TABLE, url))
-
+    # could add custom sleep here?
+    # or how would we execute every hour?
+    # check below for a really janky way of terminating
+    print('>>> Streaming is starting')
+    count = 0
     for comment in REDDIT.subreddit('all').stream.comments():
         reddit_post = RedditPost(
             text=comment.body,
@@ -48,5 +59,18 @@ def handler(event, context):
             score=comment.score
         )
         session.add(reddit_post)
+        N = 500
+        count+=1
+        if count % N == 0:
+            print('>>> {} New Reddit posts have been added'.format(count))
+            print('>>> Committing rows to table: ', TABLE)
+            session.commit()
 
-    session.commit()
+try:
+    start_handler = func_timeout(1500, handler, args=())
+except FunctionTimedOut:
+    print('Streaming terminated')
+
+
+
+
