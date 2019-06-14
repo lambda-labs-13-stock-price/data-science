@@ -11,14 +11,8 @@ Resources:
       Role: arn:aws:iam::465245944185:role/aws-lambda-cli-role
       Code:
         ZipFile: |
-          import json
-
-          def handler():
-            return {
-              'statusCode': 200,
-              'headers': { 'Content-Type': 'application/json' },
-              'body': json.dumps({ 'alive': true })
-            }
+          def handler(event, context):
+            return { 'alive': true }
 
   API:
     Type: AWS::ApiGateway::RestApi
