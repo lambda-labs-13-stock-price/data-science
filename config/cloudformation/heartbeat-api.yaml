@@ -92,7 +92,6 @@ Resources:
       MethodSettings:
         - ResourcePath: "/*"
           HttpMethod: "*"
-          LoggingLevel: INFO
 
 Outputs:
   FunctionArn:
