@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
+# This may be deprecated
 # Per https://docs.sqlalchemy.org/en/13/core/compiler.html#utc-timestamp-function,
 # SQLAlchemy does not, by default, support conversion to UTC timestamps from Unix
 # timestamps. The `UTC` class, and `pg_unix_to_utc` function thereafter, implement a
@@ -37,6 +38,5 @@ class RedditComments(Base):
 
     id = Column(Integer, primary_key=True)
     text = Column(String)
-    time = Column(DateTime)
-    timestamp = Column(DateTime(timezone=True), server_default=pg_unix_to_utc())
+    time = Column(Numeric)
     subreddit_id = Column(String)

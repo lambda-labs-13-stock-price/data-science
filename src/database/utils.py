@@ -12,7 +12,7 @@ def connect(username, password, host, port, name, drivername='postgres'):
         'database': name
     }
 
-    url = URL(**postgres_db).__to_string__()
+    url = URL(**postgres_db)
     engine = create_engine(url)
     Session = sessionmaker(bind=engine)
 
