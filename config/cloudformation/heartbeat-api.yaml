@@ -88,9 +88,9 @@ Resources:
     Properties:
       DeploymentId: !Ref Proxy
       MethodSettings:
-        HttpMethod: "*"
-        LoggingLevel: INFO
-        ResourcePath: "/*"
+        - HttpMethod: "*"
+        - LoggingLevel: INFO
+        - ResourcePath: "/*"
       RestApiId: !Ref API
       StageName: LATEST
 
