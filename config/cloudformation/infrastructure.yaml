@@ -1,5 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  S3TemplateBucket:
+    Type: String
+
+  S3TemplateKey:
+    Type: String
+
 Metadata:
   Tags:
     - 
@@ -13,39 +20,39 @@ Resources:
   Accounts:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/resources.yaml" 
 
   Permissions:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/permissions.yaml" 
 
   Networking:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/networking.yaml" 
 
   S3:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/s3.yaml" 
 
   RDS:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/rds.yaml" 
 
   EC2: 
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/ec2.yaml" 
 
   Lambda:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/lambda.yaml" 
 
   Glue:
     Type: AWS::CloudFormation::Stack
     Properties: 
-      TemplateURL: # TODO
+      TemplateURL: !Sub "https://s3.amazonaws.com/${S3TemplateBucket}/${S3TemplateKey}/cloudformation/glue.yaml" 
