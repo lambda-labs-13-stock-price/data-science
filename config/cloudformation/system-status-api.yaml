@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Heartbeat API
+Description: System Status API
 
 Resources:
   Function:
