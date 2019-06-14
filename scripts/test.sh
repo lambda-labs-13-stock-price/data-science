@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-POLICY=$(cat ./config/policy.json | sed -e 's/^ *//' | tr -d '\n')
+POLICY=$(cat ./config/us-west-2-deployments-only-policy.json | sed -e 's/^ *//' | tr -d '\n')
 
 SUCCESSFUL_CONTEXT="\
 ContextKeyName='aws:RequestedRegion',\
