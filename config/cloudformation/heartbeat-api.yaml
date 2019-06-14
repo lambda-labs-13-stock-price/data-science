@@ -87,12 +87,12 @@ Resources:
     Type: AWS::ApiGateway::Stage
     Properties:
       DeploymentId: !Ref Proxy
-      MethodSettings:
-        - HttpMethod: "*"
-        - LoggingLevel: INFO
-        - ResourcePath: "/*"
       RestApiId: !Ref API
       StageName: LATEST
+      MethodSettings:
+        - ResourcePath: "/*"
+          HttpMethod: "*"
+          LoggingLevel: INFO
 
 Outputs:
   FunctionArn:
