@@ -1,7 +1,8 @@
 from .database.tables import RedditPost, pg_utcnow
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.engine.url import URL
-import praw, time, os
+from sqlalchemy.orm import sessionmaker
+import praw, os
 
 TABLE = 'reddit_posts'
 
@@ -9,6 +10,7 @@ HOST = os.environ['PG_HOSTNAME']
 PORT = os.environ['PG_PORT']
 USER = os.environ['PG_USERNAME']
 PASS = os.environ['PG_PASSWORD']
+NAME = os.environ['PG_DBNAME']
 
 REDDIT_CLIENT_ID = os.environ['REDDIT_CLIENT_ID']
 REDDIT_CLIENT_SECRET = os.environ['REDDIT_CLIENT_SECRET']
@@ -26,7 +28,8 @@ def handler(event, context):
         username=USER,
         password=PASS,
         host=HOST,
-        port=PORT
+        port=PORT,
+        database=NAME
     )
 
     url = URL(**postgres_params).__to_string__()
