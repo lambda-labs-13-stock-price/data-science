@@ -37,14 +37,21 @@ Resources:
           - !Ref API
           - "/*"
 
-  POST:
+  Service:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref API
+      ParentId: !GetAtt [API, RootResourceId]
+      PathPart: "v1"
+
+  Responder:
     Type: AWS::ApiGateway::Method
     DependsOn:
       - FunctionInvocationPermissions
     Properties:
       AuthorizationType: NONE
       HttpMethod: POST
-      ResourceId: !Ref Route
+      ResourceId: !Ref Service
       RestApiId: !Ref API
       MethodResponses:
         - StatusCode: 200
@@ -62,33 +69,26 @@ Resources:
         IntegrationResponses:
           - StatusCode: 200
 
-  Proxy:
+  Listener:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
-      - POST
+      - Route
     Properties:
       RestApiId: !Ref API
-      StageName: "testing"
+      StageName: listener
 
-  Route:
-    Type: AWS::ApiGateway::Resource
-    Properties:
-      RestApiId: !Ref API
-      ParentId: !GetAtt [API, RootResourceId]
-      PathPart: "v1"
-
-  Middleware:
+  Router:
     Type: AWS::ApiGateway::Stage
     Properties:
-      DeploymentId: !Ref Proxy
+      DeploymentId: !Ref Listener
       RestApiId: !Ref API
-      StageName: LATEST
+      StageName: router
       MethodSettings:
-        - ResourcePath: "/*"
+        - ResourcePath: "/"
           HttpMethod: "*"
 
 Outputs:
   FunctionArn:
     Value: !GetAtt [Function, Arn]
   APIGatewayURL:
-    Value: !Sub "https://${API}.execute-api.${AWS::Region}.amazonaws.com/${Middleware}"
+    Value: !Sub https://${API}.execute-api.${AWS::Region}.amazonaws.com/${Router}
