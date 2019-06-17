@@ -19,7 +19,7 @@ endef
 
 lint:
 	yaml-lint $(CLOUDFORMATION_CONFIG)
-	eslint $(IAM_POLICIES)
+	npm run lint
 
 test:
 	$(foreach template, $(CLOUDFORMATION_CONFIG), aws cloudformation validate-template --template-body file://$(template);) 
@@ -33,3 +33,7 @@ deploy:
 		--policy-name USWest2AdministratorAccessOnly \
 		--description "Provides full access in us-west-2 (Oregon) only"\
 		--policy-document file://$(AWS_DEPLOYMENT_REGION_POLICY)
+
+clean:
+	rm -rf node_modules
+	rm package-lock.json

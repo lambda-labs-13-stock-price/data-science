@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "lint": "eslint --ext .json ."
+  },
+  "devDependencies": [
+    "eslint",
+    "eslint-plugin-json"
+  ]
+}
