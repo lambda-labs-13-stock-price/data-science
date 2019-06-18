@@ -1,0 +1,158 @@
+,currency code,currency name,currency_shortname,G10
+0,AED,United Arab Emirates Dirham,Dirham,False
+1,AFN,Afghan Afghani,Afghani,False
+2,ALL,Albanian Lek,Lek,False
+3,AMD,Armenian Dram,Dram,False
+4,ANG,Netherlands Antillean Guilder,Guilder,False
+5,AOA,Angolan Kwanza,Kwanza,False
+6,ARS,Argentine Peso,Peso,False
+7,AUD,Australian Dollar,Dollar,True
+8,AWG,Aruban Florin,Florin,False
+9,AZN,Azerbaijani Manat,Manat,False
+10,BAM,Bosnia-Herzegovina Convertible Mark,Mark,False
+11,BBD,Barbadian Dollar,Dollar,False
+12,BDT,Bangladeshi Taka,Taka,False
+13,BGN,Bulgarian Lev,Lev,False
+14,BHD,Bahraini Dinar,Dinar,False
+15,BIF,Burundian Franc,Franc,False
+16,BMD,Bermudan Dollar,Dollar,False
+17,BND,Brunei Dollar,Dollar,False
+18,BOB,Bolivian Boliviano,Boliviano,False
+19,BRL,Brazilian Real,Real,False
+20,BSD,Bahamian Dollar,Dollar,False
+21,BTN,Bhutanese Ngultrum,Ngultrum,False
+22,BWP,Botswanan Pula,Pula,False
+23,BZD,Belize Dollar,Dollar,False
+24,CAD,Canadian Dollar,Dollar,True
+25,CDF,Congolese Franc,Franc,False
+26,CHF,Swiss Franc,Franc,True
+27,CLF,Chilean Unit of Account UF,UF,False
+28,CLP,Chilean Peso,Peso,False
+29,CNH,Chinese Yuan Offshore,Offshore,False
+30,CNY,Chinese Yuan,Yuan,False
+31,COP,Colombian Peso,Peso,False
+32,CUP,Cuban Peso,Peso,False
+33,CVE,Cape Verdean Escudo,Escudo,False
+34,CZK,Czech Republic Koruna,Koruna,False
+35,DJF,Djiboutian Franc,Franc,False
+36,DKK,Danish Krone,Krone,False
+37,DOP,Dominican Peso,Peso,False
+38,DZD,Algerian Dinar,Dinar,False
+39,EGP,Egyptian Pound,Pound,False
+40,ERN,Eritrean Nakfa,Nakfa,False
+41,ETB,Ethiopian Birr,Birr,False
+42,EUR,Euro,Euro,True
+43,FJD,Fijian Dollar,Dollar,False
+44,FKP,Falkland Islands Pound,Pound,False
+45,GBP,British Pound Sterling,Sterling,True
+46,GEL,Georgian Lari,Lari,False
+47,GHS,Ghanaian Cedi,Cedi,False
+48,GIP,Gibraltar Pound,Pound,False
+49,GMD,Gambian Dalasi,Dalasi,False
+50,GNF,Guinean Franc,Franc,False
+51,GTQ,Guatemalan Quetzal,Quetzal,False
+52,GYD,Guyanaese Dollar,Dollar,False
+53,HKD,Hong Kong Dollar,Dollar,False
+54,HNL,Honduran Lempira,Lempira,False
+55,HRK,Croatian Kuna,Kuna,False
+56,HTG,Haitian Gourde,Gourde,False
+57,HUF,Hungarian Forint,Forint,False
+58,IDR,Indonesian Rupiah,Rupiah,False
+59,ILS,Israeli New Sheqel,Sheqel,False
+60,INR,Indian Rupee,Rupee,False
+61,IQD,Iraqi Dinar,Dinar,False
+62,IRR,Iranian Rial,Rial,False
+63,ISK,Icelandic Krona,Krona,False
+64,JEP,Jersey Pound,Pound,False
+65,JMD,Jamaican Dollar,Dollar,False
+66,JOD,Jordanian Dinar,Dinar,False
+67,JPY,Japanese Yen,Yen,True
+68,KES,Kenyan Shilling,Shilling,False
+69,KGS,Kyrgystani Som,Som,False
+70,KHR,Cambodian Riel,Riel,False
+71,KMF,Comorian Franc,Franc,False
+72,KPW,North Korean Won,Won,False
+73,KRW,South Korean Won,Won,False
+74,KWD,Kuwaiti Dinar,Dinar,False
+75,KYD,Cayman Islands Dollar,Dollar,False
+76,KZT,Kazakhstani Tenge,Tenge,False
+77,LAK,Laotian Kip,Kip,False
+78,LBP,Lebanese Pound,Pound,False
+79,LKR,Sri Lankan Rupee,Rupee,False
+80,LRD,Liberian Dollar,Dollar,False
+81,LSL,Lesotho Loti,Loti,False
+82,LYD,Libyan Dinar,Dinar,False
+83,MAD,Moroccan Dirham,Dirham,False
+84,MDL,Moldovan Leu,Leu,False
+85,MGA,Malagasy Ariary,Ariary,False
+86,MKD,Macedonian Denar,Denar,False
+87,MMK,Myanma Kyat,Kyat,False
+88,MNT,Mongolian Tugrik,Tugrik,False
+89,MOP,Macanese Pataca,Pataca,False
+90,MRO,Mauritanian Ouguiya (pre-2018),(pre-2018),False
+91,MRU,Mauritanian Ouguiya,Ouguiya,False
+92,MUR,Mauritian Rupee,Rupee,False
+93,MVR,Maldivian Rufiyaa,Rufiyaa,False
+94,MWK,Malawian Kwacha,Kwacha,False
+95,MXN,Mexican Peso,Peso,False
+96,MYR,Malaysian Ringgit,Ringgit,False
+97,MZN,Mozambican Metical,Metical,False
+98,NAD,Namibian Dollar,Dollar,False
+99,NGN,Nigerian Naira,Naira,False
+100,NOK,Norwegian Krone,Krone,True
+101,NPR,Nepalese Rupee,Rupee,False
+102,NZD,New Zealand Dollar,Dollar,True
+103,OMR,Omani Rial,Rial,False
+104,PAB,Panamanian Balboa,Balboa,False
+105,PEN,Peruvian Nuevo Sol,Sol,False
+106,PGK,Papua New Guinean Kina,Kina,False
+107,PHP,Philippine Peso,Peso,False
+108,PKR,Pakistani Rupee,Rupee,False
+109,PLN,Polish Zloty,Zloty,False
+110,PYG,Paraguayan Guarani,Guarani,False
+111,QAR,Qatari Rial,Rial,False
+112,RON,Romanian Leu,Leu,False
+113,RSD,Serbian Dinar,Dinar,False
+114,RUB,Russian Ruble,Ruble,False
+115,RUR,Old Russian Ruble,Ruble,False
+116,RWF,Rwandan Franc,Franc,False
+117,SAR,Saudi Riyal,Riyal,False
+118,SBDf,Solomon Islands Dollar,Dollar,False
+119,SCR,Seychellois Rupee,Rupee,False
+120,SDG,Sudanese Pound,Pound,False
+121,SEK,Swedish Krona,Krona,True
+122,SGD,Singapore Dollar,Dollar,False
+123,SHP,Saint Helena Pound,Pound,False
+124,SLL,Sierra Leonean Leone,Leone,False
+125,SOS,Somali Shilling,Shilling,False
+126,SRD,Surinamese Dollar,Dollar,False
+127,SYP,Syrian Pound,Pound,False
+128,SZL,Swazi Lilangeni,Lilangeni,False
+129,THB,Thai Baht,Baht,False
+130,TJS,Tajikistani Somoni,Somoni,False
+131,TMT,Turkmenistani Manat,Manat,False
+132,TND,Tunisian Dinar,Dinar,False
+133,TOP,Tongan Pa'anga,Pa'anga,False
+134,TRY,Turkish Lira,Lira,False
+135,TTD,Trinidad and Tobago Dollar,Dollar,False
+136,TWD,New Taiwan Dollar,Dollar,False
+137,TZS,Tanzanian Shilling,Shilling,False
+138,UAH,Ukrainian Hryvnia,Hryvnia,False
+139,UGX,Ugandan Shilling,Shilling,False
+140,USD,United States Dollar,Dollar,True
+141,UYU,Uruguayan Peso,Peso,False
+142,UZS,Uzbekistan Som,Som,False
+143,VND,Vietnamese Dong,Dong,False
+144,VUV,Vanuatu Vatu,Vatu,False
+145,WST,Samoan Tala,Tala,False
+146,XAF,CFA Franc BEAC,BEAC,False
+147,XAG,Silver Ounce,Ounce,False
+148,XAU,Gold Ounce,Ounce,False
+149,XCD,East Caribbean Dollar,Dollar,False
+150,XDR,Special Drawing Rights,Rights,False
+151,XOF,CFA Franc BCEAO,BCEAO,False
+152,XPF,CFP Franc,Franc,False
+153,YER,Yemeni Rial,Rial,False
+154,ZAR,South African Rand,Rand,False
+155,ZMW,Zambian Kwacha,Kwacha,False
+156,ZWL,Zimbabwean Dollar,Dollar,False

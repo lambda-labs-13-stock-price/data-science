@@ -34,7 +34,7 @@ def main():
 
     lowercase = corpus['text'].str.lower()
     contains_name_masks = [lowercase.str.contains(company) for company in TICKERS_TO_COMPANY[ticker]]
-    any_comany_alias = reduce(lambda agg, curr: agg | curr, contains_name_masks)
+    any_company_alias = reduce(lambda agg, curr: agg | curr, contains_name_masks)
 
     matching = corpus[any_company_alias]
     average_score = matching['sentiment_score'].mean()
